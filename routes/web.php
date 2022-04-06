@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Taskcontroller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +19,42 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+Route::get('/about', function(){
+    $name = 'ahmed';
+return view('about' , compact('name'));
+});
+
+Route::post('/store' , function(){
+    $name= request('name');
+   return view ('about',compact('name'));
+});
+
+// Route::get('tasks', function(){
+//     $tasks = [
+//         'task1',
+//         'task2',
+//         'task3'
+
+
+//     ];
+//     return view ('tasks', compact ('tasks'));
+
+// });
+
+
+Route::get('tasks', [Taskcontroller::class , 'index'])->name ('tasks.index');
+    
+
+Route ::get('/tasks/{id}' , [Taskcontroller::class , 'show'])->name('tasks.show') ;
+
+Route::post('store', [Taskcontroller::class , 'store'])->name ('tasks.store');
+
+
+
+
+   
+
+  
