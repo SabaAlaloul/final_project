@@ -2,6 +2,9 @@
 @section ('content')
 
 <div class="col-sm-offset-2 col-sm-8">
+@if (session('status'))
+                <h6 class="alert alert-success">{{ session('status') }}</h6>
+            @endif
             <div class="panel panel-default">
                 <div class="panel-heading">
                     New Task
@@ -10,15 +13,16 @@
                 <div class="panel-body">
                     <!-- Display Validation Errors -->
                     <!-- New Task Form -->
-                    <form action="\store" method="POST" class="form-horizontal">
+                    <form action="\update\id" method="POST" class="form-horizontal">
                         @csrf
+                        @method('PUT')
 
                         <!-- Task Name -->
                         <div class="form-group">
                             <label for="task-name" class="col-sm-3 control-label">Task</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="name" id="task-name" class="form-control" value="">
+                                <input type="text" name="name" id="task-name"  class="form-control" value="{{$task->name}}">
                             </div>
                         </div>
 
@@ -28,6 +32,7 @@
                                 <button type="submit" class="btn btn-default">
                                     <i class="fa fa-btn fa-plus"></i>Add Task
                                 </button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </div>
                     </form>
@@ -62,11 +67,9 @@
                                                
                                             </form>
                                             <td>
-                                           
-                                            <form action="\edit\id" method="post">
+                                            <form action="" method="POST">
                                             @csrf
                                             @method('PUT')
-                                            
                                             
                                                 
                                                 <button type="submit"class="btn btn-primary btn-sm">
@@ -77,40 +80,11 @@
                                         </td>
                                        
                                     </tr>
-                                    <tr>
-                                    <td>
-                                           
-                                        @endforeach
+                                    @endforeach
+                                      
+                                       
 
-                                        <td class="table-text"><div>Task 2</div></td>
-
-                                        <!-- Task Delete Button -->
-                                        <td>
-                                            <form action="#" method="POST">
-                                                <button type="submit" class="btn btn-danger">
-                                                    <i class="fa fa-btn fa-trash"></i>Delete
-                                                </button>
-                                                <button type="submit" class="btn btn-danger">
-                                                    <i class="fa fa-btn fa-trash"></i>Edit
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-text"><div>Task 3</div></td>
-
-                                        <!-- Task Delete Button -->
-                                        <td>
-                                            <form action="#" method="POST">
-                                                <button type="submit" class="btn btn-danger">
-                                                    <i class="fa fa-btn fa-trash"></i>Delete
-                                                </button>
-                                                <button type="submit" class="btn btn-danger">
-                                                    <i class="fa fa-btn fa-trash"></i>Edit
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                        
                                        
                             </tbody>
                         </table>

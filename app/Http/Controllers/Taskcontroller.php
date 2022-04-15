@@ -27,4 +27,29 @@ class Taskcontroller extends Controller
         return redirect()->back();
 
     }
+
+    public function delete ($id){
+          DB::table('tasks')->where('id','=',$id)->delete();
+           
+        return redirect()->back();
+
+    }
+  
+  
+    
+    public function edit($id)
+    {
+        $tasks = DB:: table('tasks')->get();
+        $task= DB::table('tasks')->find($id);
+       
+        return view('edit', compact('tasks' , 'task'));
+    }
+   /* public function update(Request $request, $id)
+    {
+        $tas= DB::table('tasks')->find($id);
+      
+ 
+        $tas->update();
+        return redirect()->back()->with('status','Student Updated Successfully');
+    }*/
 }
