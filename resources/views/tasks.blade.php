@@ -8,6 +8,8 @@
                 </div>
 
                 <div class="panel-body">
+                   
+
                     <!-- Display Validation Errors -->
                     <!-- New Task Form -->
                     <form action="\store" method="POST" class="form-horizontal">
@@ -18,7 +20,7 @@
                             <label for="task-name" class="col-sm-3 control-label">Task</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="name" id="task-name" class="form-control" value="">
+                                <input type="text" name="name" id="" class="form-control" value="">
                             </div>
                         </div>
 
@@ -29,6 +31,7 @@
                                     <i class="fa fa-btn fa-plus"></i>Add Task
                                 </button>
                             </div>
+
                         </div>
                     </form>
                 </div>
@@ -47,15 +50,17 @@
                                 <th>&nbsp;</th>
                             </thead>
                             <tbody>
+
                                 @foreach ($tasks as $task)
-                                  
+        
                                     <tr>
                                         <td class="table-text"><div>{{$task->name}}</div></td>
 
                                         <!-- Task Delete Button -->
                                         <td>
-                                            <form action="\delete\id" method="POST">
-                                            @csrf
+                                            <form action="{{ url('/destroy/'. $task->id) }}" method="POST">
+                                                @csrf
+                                           
                                                 <button type="submit" class="btn btn-danger">
                                                     <i class="fa fa-btn fa-trash"></i>Delete
                                                 </button>
@@ -86,7 +91,7 @@
 
                                         <!-- Task Delete Button -->
                                         <td>
-                                            <form action="#" method="POST">
+                                            <form action="" method="POST">
                                                 <button type="submit" class="btn btn-danger">
                                                     <i class="fa fa-btn fa-trash"></i>Delete
                                                 </button>
